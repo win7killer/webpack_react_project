@@ -20,38 +20,18 @@ module.exports = {
 
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
         exclude: /\/node\_modules\//,
         loader: 'babel-loader'
       },
       {
-        test: /\.css$/,
-        loader: [
-          'style-loader',
-          'css-loader',
-        ]
-      },
-      {
-        test: /\.less$/,
+        test: /\.(less|css)/,
         loader: [
           'style-loader',
           'css-loader',
           'postcss-loader',
-          'less-loader',
-          {
-            loader: 'px2rem-loader',
-            options: {
-              remUnit: 75,
-              remPrecision: 8,
-            }
-          }
+          'less-loader'
         ]
-      },
-      {
-        test: /\.(jp(e)?g|png|webp)$/,
-        loader: {
-
-        }
       }
     ]
   },
@@ -59,6 +39,20 @@ module.exports = {
     alias: {
       '@': SrcDir,
     },
-    extensions: ['.jsx', '.js', '.less', '.json']
+  },
+  devServer: {
+    contentBase: SrcDir,
+    host: '0.0.0.0',
+    port: 8080,
+    disableHostCheck: true,
+    historyApiFallback: true,
+    hot: true,
+    open: 'Google Chrome',
+    overlay: true,
+    publicPath: '/static/',
+    writeToDisk: true,
+    compress: true,
+
+
   }
 };
