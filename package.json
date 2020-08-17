@@ -1,0 +1,30 @@
+{
+  "name": "webpack_react_project",
+  "version": "1.0.0",
+  "description": "webpack/react 配置练习项目",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --progress --colors",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/win7killer/webpack_react_project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/win7killer/webpack_react_project/issues"
+  },
+  "homepage": "https://github.com/win7killer/webpack_react_project#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {}
+}
