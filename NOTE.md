@@ -18,6 +18,8 @@
 - autoprefixer
 - css-loader
 - style-loader
+- postcss-px-to-viewport
+- cssnano
 
 ### img
 - url-loader

@@ -37,21 +37,26 @@ module.exports = {
           'style-loader',
           'css-loader',
           'postcss-loader',
-          'less-loader',
           {
             loader: 'px2rem-loader',
             options: {
               remUnit: 75,
               remPrecision: 8,
             }
-          }
+          },
+          'less-loader',
         ]
       },
       {
         test: /\.(jp(e)?g|png|webp)$/,
-        loader: {
-
-        }
+        loader: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 5 * 1024
+            }
+          }
+        ]
       }
     ]
   },
