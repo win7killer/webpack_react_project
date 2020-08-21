@@ -51,7 +51,7 @@ module.exports = {
     open: 'Google Chrome',
     overlay: true,
     publicPath: '/static/',
-    writeToDisk: true,
+    writeToDisk: false,
     compress: true,
   }
 };

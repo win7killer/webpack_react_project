@@ -1,6 +1,8 @@
 import React from 'react';
 import RootRoutes from './router';
 
+import './App.less';
+
 /**
  * 1. Router
  * 2. Store

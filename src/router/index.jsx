@@ -1,7 +1,7 @@
 import React from 'react';
 import Loadable from 'react-loadable';
 import { Route, Switch, BrowserRouter, Redirect, } from 'react-router-dom';
-import { hocLoadable } from './conf';
+import { hocLoadable, hocLoadableByFilePath } from './conf';
 
 import Welcome from '@/views/home/welcome';
 
@@ -9,9 +9,11 @@ const Loading = function () {
   return <div className="loading-box">loading</div>
 }
 
-let routesMap = {
+export let routesMap = {
   home: {
-    path: '/home',
+    path: ['/index', '/home'],
+    // path: '/home',
+    name: 'home',
     component: hocLoadable({
       loader: () => import(/* webpackChunkName: "home" */ '@/views/home'),
     }),
@@ -22,21 +24,29 @@ let routesMap = {
           loader: () => import(/* webpackChunkName: "home.welcome" */ '@/views/home/welcome'),
         }),
         // component: Welcome
+      },
+      info: {
+        path: '/info',
+        component: hocLoadable({
+          loader: () => import(/* webpackChunkName: "home.info" */ '@/views/home/info'),
+        }),
+        // component: Welcome
       }
     }
   },
   post: {
     path: '/post',
-    component: Loadable({
-      loader: () => import(/* webpackChunkName: "post" */ '@/views/post'),
-      loading: Loading
+    name: 'post',
+    component: hocLoadableByFilePath({
+      webpackChunkName: 'post_11',
+      filePath: '@/views/post'
     }),
   },
   about: {
     path: '/about',
-    component: Loadable({
+    name: 'about',
+    component: hocLoadable({
       loader: () => import(/* webpackChunkName: "about" */ '@/views/about'),
-      loading: Loading
     }),
   },
 };
@@ -53,19 +63,18 @@ export default function RootRoutes() {
     <BrowserRouter>
       <Switch>
         {routerConf.routes.map(item => {
-          console.log(item)
           return <Route path={item.path}
             name={item.name}
             key={item.path}
             children={(props) => {
               return <item.component {...props} subRoutesMap={item.subRoutesMap}></item.component>
             }}
-          // children={item.component}
           ></Route>
         })}
 
         <Route path="/404"></Route>
-        <Redirect path="*" to="/404"></Redirect>
+        {/* <Redirect to="/"></Redirect> */}
+
       </Switch>
     </BrowserRouter>
   </div>

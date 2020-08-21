@@ -13,7 +13,20 @@ export default class Welcome extends React.Component {
 
   render() {
     return <div className="welcome-base-page">
-      <h2>welcome base page</h2>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+
     </div>
   }
 }

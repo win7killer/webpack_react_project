@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { MainNavBar } from '../../components/navbar';
+import MainNavBar from '@/components/navbar';
 
 import './index.less';
 
