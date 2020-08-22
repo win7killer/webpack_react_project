@@ -30,16 +30,14 @@ export let routesMap = {
         component: hocLoadable({
           loader: () => import(/* webpackChunkName: "home.info" */ '@/views/home/info'),
         }),
-        // component: Welcome
       }
     }
   },
   post: {
     path: '/post',
     name: 'post',
-    component: hocLoadableByFilePath({
-      webpackChunkName: 'post_11',
-      filePath: '@/views/post'
+    component: hocLoadable({
+      loader: () => import(/* webpackChunkName: "post" */ '@/views/post'),
     }),
   },
   about: {
