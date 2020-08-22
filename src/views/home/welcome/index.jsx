@@ -17,6 +17,20 @@ export default class Welcome extends React.Component {
     return <div className="welcome-base-page">
       <h2>welcome base page</h2>
       <TimerCountDown></TimerCountDown>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+      <p>welcome base page welcome base page</p>
+
     </div>
   }
 }

@@ -32,3 +32,9 @@
 - redux
 - react-redux
 -
+
+
+### npm script
+- --config webpack.conf.js
+- --colors
+- --progress
