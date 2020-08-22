@@ -1,4 +1,6 @@
 import React from 'react';
+import { TimerCountDown } from '@/components/timer';
+
 import './index.less';
 
 export default class Welcome extends React.Component {
@@ -14,6 +16,7 @@ export default class Welcome extends React.Component {
   render() {
     return <div className="welcome-base-page">
       <h2>welcome base page</h2>
+      <TimerCountDown></TimerCountDown>
     </div>
   }
 }

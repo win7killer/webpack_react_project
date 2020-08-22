@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { hocLoadable } from '../../router/conf';
 
 import { MainNavBar } from '../../components/navbar';
+import { TimerProvider } from '../../components/timer';
 import './index.less';
 
 export default class Home extends React.Component {
@@ -26,6 +27,9 @@ export default class Home extends React.Component {
     return <div className="home-base-page">
       <MainNavBar></MainNavBar>
       <h1>home base page</h1>
+
+      <TimerProvider></TimerProvider>
+
       <div className="home-router-view">
         {/* {match.pathname} */}
       <BrowserRouter basename="/home">
