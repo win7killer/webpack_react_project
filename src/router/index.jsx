@@ -3,7 +3,7 @@ import Loadable from 'react-loadable';
 import { Route, Switch, BrowserRouter, Redirect, } from 'react-router-dom';
 import { hocLoadable, hocLoadableByFilePath } from './conf';
 
-import Welcome from '@/views/home/welcome';
+// import Welcome from '@/views/home/welcome';
 
 const Loading = function () {
   return <div className="loading-box">loading</div>
@@ -12,7 +12,6 @@ const Loading = function () {
 export let routesMap = {
   home: {
     path: ['/index', '/home'],
-    // path: '/home',
     name: 'home',
     component: hocLoadable({
       loader: () => import(/* webpackChunkName: "home" */ '@/views/home'),
@@ -71,7 +70,7 @@ export default function RootRoutes() {
         })}
 
         <Route path="/404"></Route>
-        {/* <Redirect to="/"></Redirect> */}
+        <Redirect to="/home" path="/"></Redirect>
 
       </Switch>
     </BrowserRouter>

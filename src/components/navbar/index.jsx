@@ -13,7 +13,7 @@ function MainNavBar (props) {
   let { match } = props;
 
   useEffect(() => {
-    console.log('MainNavBar props', props)
+    // console.log('MainNavBar props', props)
 
   }, [props]);
 

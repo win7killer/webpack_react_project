@@ -7,7 +7,8 @@
 - @babel/preset-env
 - @babel/preset-react
 - babel-loader
-- @babel/plugin-syntax-dynamic-import
+- @babel/plugin-syntax-dynamic-import // `import()`
+- @babel/plugin-proposal-class-properties // `class 的方法使用箭头函数`
 
 
 ### css
@@ -38,3 +39,7 @@
 - --config webpack.conf.js
 - --colors
 - --progress
+
+### build
+
+### server

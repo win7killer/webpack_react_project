@@ -6,6 +6,16 @@ import { TimerProvider } from '@/components/timer';
 import MainNavBar from '@/components/navbar';
 import './index.less';
 
+// import Info from './info';
+// const Welcome = hocLoadable({
+//   loader: () => import('./welcome'),
+// })
+
+// const Info = hocLoadable({
+//   loader: () => import(/* webpackChunkName: "home_info" */ './info'),
+// })
+
+
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -25,7 +35,7 @@ export default class Home extends React.Component {
   }
 
   render() {
-    let { subRoutesMap } = this.props;
+    let { subRoutesMap, match } = this.props;
     let subRoutesList = Object.values(subRoutesMap);
 
     return <div className="home-base-page">
@@ -35,25 +45,21 @@ export default class Home extends React.Component {
       <TimerProvider></TimerProvider>
 
       <div>
-        <Link to="/home/welcome">welcome</Link><br/>
+        <Link to="/home/welcome">welcome</Link><br />
         <Link to="/home/info">info</Link>
       </div>
-      <div className="home-router-view">
-        {/* {match.pathname} */}
-      <BrowserRouter basename="/home">
-        {/* <Switch> */}
-          {
-            subRoutesList.map(item => {
-              console.log(item.component)
-              return <Route key={item.path} path={item.path} component={item.component}></Route>
-            })
-          }
-          <Route key={subRoutesList[0].path} path={subRoutesList[0].path} component={subRoutesList[0].component}></Route>
-          <Route key={subRoutesList[1].path} path={subRoutesList[1].path} component={subRoutesList[1].component}></Route>
-        {/* </Switch> */}
-      </BrowserRouter>
-
-      </div>
+      <SubRouterComponent routes={subRoutesList} parentPath={match.path}></SubRouterComponent>
     </div>
   }
+}
+
+function SubRouterComponent(props) {
+  let { routes, parentPath = '' } = props;
+  return <div className="sub-routes-view">
+    <Switch>
+      {routes.map(item => {
+        return <Route key={item.path} path={`${parentPath}${item.path}`} component={item.component}></Route>
+      })}
+    </Switch>
+  </div>
 }
