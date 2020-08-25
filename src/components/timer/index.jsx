@@ -2,12 +2,12 @@ import React from 'react';
 
 let contextObj = {
   timer: null,
-  callBackList: new Set(),
+  callbackSet: new Set(),
   addCallback: (fn) => {
-    contextObj.callBackList.add(fn);
+    contextObj.callbackSet.add(fn);
   },
   cancel: (fn) => {
-    contextObj.callBackList.delete(fn);
+    contextObj.callbackSet.delete(fn);
   }
 };
 let Context = React.createContext(contextObj);
@@ -16,22 +16,26 @@ let Context = React.createContext(contextObj);
 export class TimerProvider extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    console.log(props);
+    this.state = {
+
+    };
+    this.time = props.time || 1000;
   }
   componentDidMount() {
     clearInterval(this.context.timer);
-
     this.context.timer = setInterval(() => {
-      this.context.callBackList.forEach(em => {
-        // console.log('context.callBackList');
-        em()
+      this.context.callbackSet.forEach(em => {
+        em();
       });
-    }, 1000);
+    }, this.time);
+  }
+  componentWillUnmount() {
+    clearInterval(this.context.timer);
+    this.context.callbackSet.clear();
   }
   render() {
-    return <div className="timer-provider-wrapper">
-      <Context.Provider value={this.timer}></Context.Provider>
-    </div>
+    return <Context.Provider value={this.timer}></Context.Provider>
   }
 }
 
@@ -45,8 +49,9 @@ export class TimerCountDown extends React.Component {
       count: 0,
     };
   }
-  timeLoop = () =>  {
-    let {count} = this.state;
+  timeLoop = () => {
+    let { count } = this.state;
+    // console.log(count)
     this.setState({
       count: count + 1
     })
@@ -56,7 +61,11 @@ export class TimerCountDown extends React.Component {
     this.context.addCallback(this.timeLoop);
   }
 
-  static getDerivedStateFromProps (nextProps, state) {
+  componentWillUnmount() {
+    this.context.cancel(this.timeLoop);
+  }
+
+  static getDerivedStateFromProps(nextProps, state) {
     // console.log('nextProps.initCount', nextProps.initCount, state.count)
     if (nextProps.initCount !== state.count && !state.count) {
       return {
@@ -78,8 +87,12 @@ export class TimerCountDown extends React.Component {
   render() {
     let { count } = this.state;
     return <div className="timer-count-down-wrapper">
-        <p>timer test {count} <span onClick={this.handleStop}>stop</span></p>
-
+      <p>
+        timer test
+          <code style={{
+          backgroundColor: ['#f93', '#39f'][count % 2],
+        }} className="count">{count}</code>
+        <span onClick={this.handleStop}>stop</span></p>
     </div>
   }
 }

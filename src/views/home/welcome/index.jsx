@@ -22,22 +22,6 @@ export default class Welcome extends React.Component {
       {this.state.list.map((em, index) => {
         return <TimerCountDown key={index} initCount={index}></TimerCountDown>
       })}
-
-
-      <p>welcome base page welcome base page</p>
-      <p>welcome base page welcome base page</p>
-      <p>welcome base page welcome base page</p>
-      <p>welcome base page welcome base page</p>
-      <p>welcome base page welcome base page</p>
-      <p>welcome base page welcome base page</p>
-      <p>welcome base page welcome base page</p>
-      <p>welcome base page welcome base page</p>
-      <p>welcome base page welcome base page</p>
-      <p>welcome base page welcome base page</p>
-      <p>welcome base page welcome base page</p>
-      <p>welcome base page welcome base page</p>
-      <p>welcome base page welcome base page</p>
-
     </div>
   }
 }

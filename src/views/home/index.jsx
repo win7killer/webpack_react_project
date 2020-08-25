@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import { hocLoadable } from '@/router/conf';
 
-import { TimerProvider } from '@/components/timer';
+import { TimerProvider, TimerCountDown } from '@/components/timer';
 import MainNavBar from '@/components/navbar';
 import './index.less';
 
@@ -42,8 +42,8 @@ export default class Home extends React.Component {
       <MainNavBar></MainNavBar>
       <h1>home base page</h1>
 
-      <TimerProvider></TimerProvider>
-
+      <TimerProvider time={2000}></TimerProvider>
+      <TimerCountDown initCount={1001}></TimerCountDown>
       <div>
         <Link to="/home/welcome">welcome</Link><br />
         <Link to="/home/info">info</Link>
