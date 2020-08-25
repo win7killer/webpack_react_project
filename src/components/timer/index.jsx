@@ -90,7 +90,7 @@ export class TimerCountDown extends React.Component {
       <p>
         timer test
           <code style={{
-          backgroundColor: ['#f93', '#39f'][count % 2],
+          backgroundColor: ['#f09', '#39f'][count % 2],
         }} className="count">{count}</code>
         <span onClick={this.handleStop}>stop</span></p>
     </div>

@@ -1,2 +1,3 @@
-const fs = require('fs');
-console.log(111)
+const { v4 } = require('uuid');
+
+console.log(v4());
