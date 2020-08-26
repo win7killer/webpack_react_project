@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { routesMap } from '@/router';
+import CommonStateContext from '@/components/common/CommonStateContext';
+
 import './index.less';
 
 const NavMap = {
@@ -11,10 +13,11 @@ const NavMap = {
 function MainNavBar (props) {
 
   let { match } = props;
+  let context = useContext(CommonStateContext);
 
   useEffect(() => {
-    // console.log('MainNavBar props', props)
-
+    console.log('MainNavBar props', props, context)
+    // console.log('this.context', this.context)
   }, [props]);
 
   return <div className="component-main_nav_bar">
@@ -32,6 +35,7 @@ function MainNavBar (props) {
     }
   </div>
 }
+
 
 function OneNavLink(props) {
   let { item, path = item.path } = props;

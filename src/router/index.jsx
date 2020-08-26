@@ -32,6 +32,13 @@ export let routesMap = {
       }
     }
   },
+  postDetail: {
+    path: '/post/detail',
+    name: 'detail',
+    component: hocLoadable({
+      loader: () => import(/* webpackChunkName: "post" */ '@/views/post/Detail'),
+    }),
+  },
   post: {
     path: '/post',
     name: 'post',

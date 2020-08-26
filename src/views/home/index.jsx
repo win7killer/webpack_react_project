@@ -4,6 +4,8 @@ import { hocLoadable } from '@/router/conf';
 
 import { TimerProvider, TimerCountDown } from '@/components/timer';
 import MainNavBar from '@/components/navbar';
+
+import CommonStateContext from '@/components/common/CommonStateContext';
 import './index.less';
 
 // import Info from './info';
@@ -39,7 +41,12 @@ export default class Home extends React.Component {
     let subRoutesList = Object.values(subRoutesMap);
 
     return <div className="home-base-page">
-      <MainNavBar></MainNavBar>
+      <CommonStateContext.Provider value={{
+        pagePath: 'home'
+      }}>
+        <MainNavBar></MainNavBar>
+      </CommonStateContext.Provider>
+
       <h1>home base page</h1>
 
       <TimerProvider time={2000}></TimerProvider>
@@ -56,10 +63,8 @@ export default class Home extends React.Component {
 function SubRouterComponent(props) {
   let { routes, parentPath = '' } = props;
   return <div className="sub-routes-view">
-    <Switch>
-      {routes.map(item => {
+    {routes.map(item => {
         return <Route key={item.path} path={`${parentPath}${item.path}`} component={item.component}></Route>
       })}
-    </Switch>
   </div>
 }

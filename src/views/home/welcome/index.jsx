@@ -7,7 +7,7 @@ export default class Welcome extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: new Array(100).fill('txt')
+      list: new Array(1).fill('txt')
     };
 
   }

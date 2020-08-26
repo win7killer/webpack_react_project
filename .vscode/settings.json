@@ -1,4 +1,5 @@
 {
     "editor.tabSize": 2,
-    "editor.fontSize": 11
+    "editor.fontSize": 11,
+    "editor.autoIndent": ""
 }

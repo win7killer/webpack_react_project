@@ -35,7 +35,7 @@ export class TimerProvider extends React.Component {
     this.context.callbackSet.clear();
   }
   render() {
-    return <Context.Provider value={this.timer}></Context.Provider>
+    return null
   }
 }
 
