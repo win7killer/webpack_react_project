@@ -43,7 +43,7 @@ function RouteChildren(props) {
 
     // RouteCacheState.current = props.match.path;
     // console.info('RouteCacheState.new_current =====> ', RouteCacheState.current, );
-    console.info('%c  RouteCacheState ===> from %o to %o ', 'background-color: #9f9', RouteCacheStateFrom, props.match.path, );
+    console.info('%c  RouteCacheState ===> from %o to %o ', 'background-color: #9f9', RouteCacheStateFrom, props.match.path, props);
     console.infoshow('emit beforeEnter',);
 
 
@@ -53,7 +53,7 @@ function RouteChildren(props) {
       // RouteCacheState.current = '';
       // console.info('leave RouteCacheState.from =====> ', RouteCacheState.from, );
       RouteCacheStateFrom = props.match.path;
-      console.infoshow('emit afterLeave ')
+      console.infoshow('emit afterLeave ', props)
 
     }
   }, [])
