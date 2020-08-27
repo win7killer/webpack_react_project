@@ -68,7 +68,7 @@ class ListBox extends React.Component {
 
   static getDerivedStateFromProps(nextProps, state) {
     if (nextProps.list?.length && !state.ListData.length) {
-      console.error('nextProps.list?.length', nextProps.list?.length)
+      console.error('nextProps.list?.length =====> ', nextProps.list?.length)
     }
     return {
       ListData: nextProps.list?.length && !state.ListData.length ? computedItemPos(nextProps.list, nextProps.itemHeight) : state.ListData

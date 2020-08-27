@@ -72,7 +72,7 @@ class List extends React.Component {
   static getDerivedStateFromProps(nextProps, state) {
     // console.log(nextProps.list.length, this.props.list.length)
     if (nextProps.list?.length && !state.ListData.length ) {
-      console.error('nextProps.list?.length', nextProps.list?.length)
+      console.info('nextProps.list?.length =====> ', nextProps.list?.length)
     }
     return {
       ListData:  computedItemPos(nextProps.list, nextProps.itemHeight)

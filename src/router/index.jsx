@@ -1,9 +1,11 @@
 import React from 'react';
 import Loadable from 'react-loadable';
-import { Route, Switch, BrowserRouter, Redirect, } from 'react-router-dom';
+import { Route as SourceRoute, Switch, BrowserRouter, Redirect, } from 'react-router-dom';
 import { hocLoadable, hocLoadableByFilePath } from './conf';
+import { RouteDo as Route } from './RouteDo';
+import Welcome from '@/views/home/welcome';
+import Info from '@/views/home/info';
 
-// import Welcome from '@/views/home/welcome';
 
 const Loading = function () {
   return <div className="loading-box">loading</div>
@@ -29,6 +31,7 @@ export let routesMap = {
         component: hocLoadable({
           loader: () => import(/* webpackChunkName: "home.info" */ '@/views/home/info'),
         }),
+        // component: Info,
       }
     }
   },
