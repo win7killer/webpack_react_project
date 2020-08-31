@@ -1,5 +1,7 @@
 ### webpack
 - webpack
+- webpack-merge
+- webpack-dev-server
 - webpack-cli
 
 ### babel
@@ -9,6 +11,7 @@
 - babel-loader
 - @babel/plugin-syntax-dynamic-import // `import()`
 - @babel/plugin-proposal-class-properties // `class 的方法使用箭头函数`
+- babel-plugin-import // antd 的 plugin, 用来对 ant 做 tree-shaking
 
 
 ### css
@@ -18,7 +21,7 @@
 - postcss-loader
 - autoprefixer
 - css-loader
-- style-loader
+- style-loader / mini-css-extract-plugin.loader
 - postcss-px-to-viewport
 - cssnano
 
@@ -32,8 +35,15 @@
 - react-router-dom
 - redux
 - react-redux
--
 
+
+### plugins
+- clean-webpack-plugin
+- copy-webpack-plugin
+- html-webpack-plugin
+- webpack.dllPlugin
+- webpack.dllReferencePlugin
+- mini-css-extract-plugin
 
 ### npm script
 - --config webpack.conf.js

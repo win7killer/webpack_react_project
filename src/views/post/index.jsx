@@ -4,8 +4,8 @@ import MainNavBar from '@/components/navbar';
 import List from '@/components/list';
 import ListBox from '@/components/list/ListBox';
 import CommonStateContext from '@/components/common/CommonStateContext';
-
 import './index.less';
+import { Toast } from 'antd-mobile';
 
 
 const imgArr = [
@@ -17,7 +17,8 @@ const ListData = function() {
   return new Array(10).fill('').map((em, index) => {
     return {
       id: v4(),
-      pic: imgArr[index % 2]
+      pic: imgArr[index % 2],
+      isBox: true,
     }
   })
 }
@@ -31,6 +32,7 @@ export default class Post extends React.Component {
   }
 
   componentDidMount() {
+    Toast.info('222')
     console.log('post componentDidMount', this.props);
   }
 
@@ -41,12 +43,20 @@ export default class Post extends React.Component {
         ...ListData(),
       ]
     }, () => {
-      console.log(this.state.list)
+      console.log(this.state.list);
+    })
+  }
+
+  handleChangeListType = () => {
+    this.setState({
+      isBox: !this.state.isBox,
     })
   }
 
   render() {
+    let { isBox } = this.state;
     return <div className="post-base-page">
+      <div onClick={this.handleChangeListType}>{isBox ? 'list_box': 'list_window'}</div>
 
       <CommonStateContext.Provider value={{
         pagePath: 'post'
@@ -55,7 +65,12 @@ export default class Post extends React.Component {
       </CommonStateContext.Provider>
       <>some</>
       <h1>post base page</h1>
-      <List list={this.state.list} itemHeight={200} valType="px"></List>
+      {
+        isBox
+          ? <ListBox list={this.state.list} itemHeight={200} boxHeight={400} valType="px"></ListBox>
+          : <List list={this.state.list} itemHeight={200} valType="px"></List>
+      }
+
       {/* <ListBox list={ListData} itemHeight={160} valType="px"></ListBox> */}
       <div className="add" onClick={this.handleAdd}>add</div>
     </div>

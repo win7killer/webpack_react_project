@@ -11,7 +11,7 @@ import MainNavBar from '@/components/navbar';
 
 import CommonStateContext from '@/components/common/CommonStateContext';
 import './index.less';
-
+import { message } from 'antd';
 // import Info from './info';
 // const Welcome = hocLoadable({
 //   loader: () => import('./welcome'),
@@ -33,7 +33,7 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-
+    message.info('111');
     console.log('home componentDidMount', this.props);
   }
   componentWillUnmount() {

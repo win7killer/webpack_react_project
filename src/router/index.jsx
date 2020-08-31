@@ -1,15 +1,9 @@
 import React from 'react';
-import Loadable from 'react-loadable';
 import { Route as SourceRoute, Switch, BrowserRouter, Redirect, } from 'react-router-dom';
 import { hocLoadable, hocLoadableByFilePath } from './conf';
 import { RouteDo as Route } from './RouteDo';
-import Welcome from '@/views/home/welcome';
-import Info from '@/views/home/info';
-
-
-const Loading = function () {
-  return <div className="loading-box">loading</div>
-}
+// import Welcome from '@/views/home/welcome';
+// import Info from '@/views/home/info';
 
 export let routesMap = {
   home: {

@@ -51,8 +51,8 @@ class ListBox extends React.Component {
   }
 
   componentDidMount() {
+    this.handleSetListData();
     this.ref.current.addEventListener('scroll', this.handleScroll);
-    this.handleScroll();
   }
 
   componentWillUnmount() {
@@ -66,22 +66,40 @@ class ListBox extends React.Component {
     })
   }
 
-  static getDerivedStateFromProps(nextProps, state) {
-    if (nextProps.list?.length && !state.ListData.length) {
-      console.error('nextProps.list?.length =====> ', nextProps.list?.length)
+  // static getDerivedStateFromProps(nextProps, state) {
+  //   if (nextProps.list?.length && !state.ListData.length) {
+  //     console.error('nextProps.list?.length =====> ', nextProps.list?.length)
+  //   }
+  //   return {
+  //     ListData: nextProps.list?.length && !state.ListData.length ? computedItemPos(nextProps.list, nextProps.itemHeight) : state.ListData
+  //   }
+  // }
+
+  componentDidUpdate(prevProps, prevState) {
+    let { list, itemHeight } = this.props;
+    // console.log('componentDidUpdate', prevProps.list, list)
+    if (prevProps.list.length !== list.length) {
+      this.handleSetListData();
     }
-    return {
-      ListData: nextProps.list?.length && !state.ListData.length ? computedItemPos(nextProps.list, nextProps.itemHeight) : state.ListData
-    }
+  }
+
+  handleSetListData = () => {
+    let { list, itemHeight } = this.props;
+    this.setState({
+      ListData:  computedItemPos(list, itemHeight)
+    })
+    this.handleScroll();
   }
 
 
   render() {
-    let { itemHeight = 100, valType = 'px', history } = this.props;
+    let { itemHeight = 100, boxHeight = 667, valType = 'px', history } = this.props;
     let { ListData, showList } = this.state;
 
     return <div className="list-component-wrapper">
-      <div className="list-box-scroll" ref={this.ref}>
+      <div className="list-box-scroll" style={{
+        height: boxHeight + valType,
+      }} ref={this.ref}>
         <div className="list-wrapper" style={{
           height: itemHeight * ListData.length + valType
         }}>
@@ -111,7 +129,7 @@ function ListItem(props) {
       transform: `translateY(${item.top}px)`
     }}>
     <code>{item.id}</code>
-    <img src={item.pic} alt="" /><img src={item.pic} alt="" /><img src={item.pic} alt="" /><img src={item.pic} alt="" />
+    <img src={item.pic} alt="" />
   </div>
 }
 

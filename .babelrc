@@ -5,6 +5,18 @@
   ],
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-proposal-class-properties"
+    "@babel/plugin-proposal-class-properties",
+    [
+      "import", {
+        "libraryName": "antd",
+        "style": true
+      }, "antd"
+    ],
+    [
+      "import", {
+        "libraryName": "ant-mobile",
+        "style": true
+      }, "antm"
+    ]
   ]
 }

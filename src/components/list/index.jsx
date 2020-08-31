@@ -52,9 +52,10 @@ class List extends React.Component {
   }
 
   componentDidMount() {
+    let { list, itemHeight } = this.props;
     console.log('000000000')
     window.addEventListener('scroll', this.handleScroll);
-    this.handleScroll();
+    this.handleSetListData();
   }
 
   componentWillUnmount() {
@@ -69,16 +70,31 @@ class List extends React.Component {
     })
   }
 
-  static getDerivedStateFromProps(nextProps, state) {
-    // console.log(nextProps.list.length, this.props.list.length)
-    if (nextProps.list?.length && !state.ListData.length ) {
-      console.info('nextProps.list?.length =====> ', nextProps.list?.length)
-    }
-    return {
-      ListData:  computedItemPos(nextProps.list, nextProps.itemHeight)
+  // static getDerivedStateFromProps(nextProps, state) {
+  //   // console.log(nextProps.list.length, this.props.list.length)
+  //   if (nextProps.list?.length && !state.ListData.length ) {
+  //     console.info('nextProps.list?.length =====> ', nextProps.list?.length)
+  //   }
+  //   return {
+  //     ListData:  computedItemPos(nextProps.list, nextProps.itemHeight)
+  //   }
+  // }
+
+  componentDidUpdate(prevProps, prevState) {
+    let { list, itemHeight } = this.props;
+    // console.log('componentDidUpdate', prevProps.list, list)
+    if (prevProps.list.length !== list.length) {
+      this.handleSetListData();
     }
   }
 
+  handleSetListData = () => {
+    let { list, itemHeight } = this.props;
+    this.setState({
+      ListData:  computedItemPos(list, itemHeight)
+    })
+    this.handleScroll();
+  }
 
   render() {
     let { itemHeight = 100, valType = 'px', history } = this.props;
@@ -103,6 +119,10 @@ class List extends React.Component {
     </div>
   }
 }
+
+List.defaultProps = {
+  list: []
+};
 
 
 function ListItem(props) {

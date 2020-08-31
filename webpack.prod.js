@@ -3,22 +3,24 @@ const { merge } = require('webpack-merge');
 const path = require('path');
 const commonConf = require('./webpack.common');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
+const CopyPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const SrcDir = path.join(__dirname, 'src');
 
 const conf = {
   stats: 'normal',
-  devtool: 'none',
+  // devtool: 'none',
   mode: 'production',
   entry: {
     main: './src/index.js',
   },
   output: {
-    filename: '[name].[chunkhash:8].js',
+    filename: 'static/[name].[chunkhash:8].js',
     path: path.join(__dirname, './dist'),
-    chunkFilename: '[name].chunk.[chunkhash:8].js',
+    chunkFilename: 'static/[name].chunk.[chunkhash:8].js',
     publicPath: '/static/'
   },
   module: {
@@ -29,7 +31,8 @@ const conf = {
         loader: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-        ]
+        ],
+        exclude: /node_modules/
       },
       {
         test: /\.less$/,
@@ -37,12 +40,21 @@ const conf = {
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-          'less-loader',
           {
             loader: 'px2rem-loader',
             options: {
-              remUnit: 75,
+              remUnit: 50,
               remPrecision: 8,
+            }
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+                // globalVars: { color1: 'red' }
+              }
+
             }
           }
         ]
@@ -52,13 +64,36 @@ const conf = {
   resolve: {
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    // new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: '[name].[contenthash:8].css'
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['**/*', '!.gitignore'],
     }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'public/dll',
+          to: 'dll'
+        }
+      ]
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'static/[name].[contenthash:8].css',
+      chunkFilename: 'static/[name].chunk.[contenthash:8].css',
+      ignoreOrder: true,
 
-  ]
+    }),
+    new webpack.DllReferencePlugin({
+      manifest: path.join(__dirname, './public/dll/react_dll.manifest.json')
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'public/index.html'),
+      filename: 'html/index.html',
+      chunks: ['dll/react_dll' ]
+    })
+
+  ],
+  optimization: {
+    minimizer: [new TerserWebpackPlugin({}), new OptimizeCSSAssetsPlugin({})],
+  },
 };
 
 module.exports = merge(commonConf, conf);
