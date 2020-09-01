@@ -14,9 +14,9 @@
     ],
     [
       "import", {
-        "libraryName": "ant-mobile",
+        "libraryName": "antd-mobile",
         "style": true
-      }, "antm"
+      }, "antd-m"
     ]
   ]
 }

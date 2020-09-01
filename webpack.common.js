@@ -25,29 +25,6 @@ module.exports = {
         loader: 'babel-loader'
       },
       {
-        test: /\.css$/,
-        loader: [
-          'style-loader',
-          'css-loader',
-        ]
-      },
-      {
-        test: /\.less$/,
-        loader: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          {
-            loader: 'px2rem-loader',
-            options: {
-              remUnit: 75,
-              remPrecision: 8,
-            }
-          },
-          'less-loader',
-        ]
-      },
-      {
         test: /\.(jp(e)?g|png|webp)$/,
         loader: [
           {

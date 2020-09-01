@@ -8,10 +8,11 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const SrcDir = path.join(__dirname, 'src');
 
 const conf = {
-  stats: 'normal',
+  stats: 'minimal',
   // devtool: 'none',
   mode: 'production',
   entry: {
@@ -31,8 +32,7 @@ const conf = {
         loader: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-        ],
-        exclude: /node_modules/
+        ]
       },
       {
         test: /\.less$/,
@@ -86,7 +86,7 @@ const conf = {
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'public/index.html'),
-      filename: 'html/index.html',
+      filename: 'index.html',
       chunks: ['dll/react_dll' ]
     })
 
@@ -96,4 +96,4 @@ const conf = {
   },
 };
 
-module.exports = merge(commonConf, conf);
+module.exports = (new SpeedMeasurePlugin).wrap(merge(commonConf, conf));

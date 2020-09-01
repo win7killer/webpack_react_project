@@ -30,7 +30,23 @@ module.exports = {
           'style-loader',
           'css-loader',
           'postcss-loader',
-          'less-loader'
+          {
+            loader: 'px2rem-loader',
+            options: {
+              remUnit: 50,
+              remPrecision: 10,
+            }
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+                // globalVars: { color1: 'red' }
+              }
+
+            }
+          }
         ]
       }
     ]
