@@ -26,7 +26,13 @@
 - cssnano
 
 ### img
-- url-loader
+- url-loader // base64 + file-loader
+- file-loader
+
+### 其他 loader
+- raw-loader // 读取文件内容
+- json5-loader // 读取 json5 格式
+
 
 ### react
 - react
@@ -44,6 +50,11 @@
 - webpack.dllPlugin
 - webpack.dllReferencePlugin
 - mini-css-extract-plugin
+- friendly-errors-webpack-plugin // 需要 `devServer.quiet = true`
+- speed-measure-webpack-plugin // 分析个阶段打包时间
+- webpack-bundle-analyzer // 可视化打包结果
+- optimize-css-assets-webpack-plugin // 压缩 css
+- terser-webpack-plugin // 压缩 js
 
 ### npm script
 - --config webpack.conf.js
@@ -53,3 +64,17 @@
 ### build
 
 ### server
+- friendly-errors-webpack-plugin
+
+## 项目
+
+### css
+- normalize.css // 样式初始化
+- animate.css // 各种动画效果
+
+### iconfont
+- https://www.iconfont.cn/ // 阿里的 iconfont
+
+### react UI 库
+- antd
+- antd-mobile
