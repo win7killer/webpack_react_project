@@ -69,5 +69,10 @@ module.exports = {
     publicPath: '/static/',
     writeToDisk: false,
     compress: true,
-  }
+  },
+  plugins: [
+    new webpack.DllReferencePlugin({
+      manifest: path.join(__dirname, './public/dll/react_dll.manifest.json')
+    }),
+  ]
 };

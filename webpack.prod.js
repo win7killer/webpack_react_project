@@ -22,7 +22,7 @@ const conf = {
     filename: 'static/[name].[chunkhash:8].js',
     path: path.join(__dirname, './dist'),
     chunkFilename: 'static/[name].chunk.[chunkhash:8].js',
-    publicPath: '/static/'
+    publicPath: '/swb/dist/'
   },
   module: {
 
@@ -87,7 +87,9 @@ const conf = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'public/index.html'),
       filename: 'index.html',
-      chunks: ['dll/react_dll' ]
+      minify: false,
+      chunks: 'all',
+      publicPath: '/swb/dist/'
     })
 
   ],

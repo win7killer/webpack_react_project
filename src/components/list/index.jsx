@@ -112,7 +112,7 @@ class List extends React.Component {
         } */}
         {
           showList.map(item => {
-          return <ListItem history={history} key={item.id} item={item}></ListItem>
+          return <ListItem history={history} key={item.id} item={item} valType={valType}></ListItem>
           })
         }
       </div>
@@ -126,7 +126,7 @@ List.defaultProps = {
 
 
 function ListItem(props) {
-  let { item, history } = props;
+  let { item, history, valType } = props;
 
   function handleClick() {
     history.push('/post/detail?id=1')
@@ -137,7 +137,7 @@ function ListItem(props) {
     onClick={handleClick}
     // data-id={item.id}
     style={{
-      transform: `translateY(${item.top}px)`
+      transform: `translateY(${item.top}${valType})`
     }}>
     <code>{item.id}</code>
     <img src={item.pic} alt="" />

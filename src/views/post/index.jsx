@@ -32,7 +32,7 @@ export default class Post extends React.Component {
   }
 
   componentDidMount() {
-    Toast.info('222')
+    // Toast.info('222')
     console.log('post componentDidMount', this.props);
   }
 
@@ -55,22 +55,20 @@ export default class Post extends React.Component {
 
   render() {
     let { isBox } = this.state;
+    let itemHeight = 187 * window.devicePixelRatioValue;
     return <div className="post-base-page">
-      <div onClick={this.handleChangeListType}>{isBox ? 'list_box': 'list_window'}</div>
-
       <CommonStateContext.Provider value={{
         pagePath: 'post'
       }}>
         <MainNavBar></MainNavBar>
       </CommonStateContext.Provider>
-      <>some</>
+      <a className="change_list" onClick={this.handleChangeListType}>now {isBox ? 'list_box': 'list_window'}</a>
       <h1>post base page</h1>
       {
         isBox
-          ? <ListBox list={this.state.list} itemHeight={200} boxHeight={400} valType="px"></ListBox>
-          : <List list={this.state.list} itemHeight={200} valType="px"></List>
+          ? <ListBox list={this.state.list} itemHeight={itemHeight} boxHeight={450 * window.devicePixelRatioValue}></ListBox>
+          : <List list={this.state.list} itemHeight={itemHeight} valType="px"></List>
       }
-
       {/* <ListBox list={ListData} itemHeight={160} valType="px"></ListBox> */}
       <div className="add" onClick={this.handleAdd}>add</div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import MainNavBar from '@/components/navbar';
-import { KeepAlive, Provider as KeepAliveProvider } from '@/components/keep_alive';
-
+// import { KeepAlive, Provider as KeepAliveProvider } from '@/components/keep_alive';
+import Waterfall from '../../components/common/Waterfall_1';
 import './index.less';
 
 export default class About extends React.Component {
@@ -28,14 +28,14 @@ export default class About extends React.Component {
       <MainNavBar></MainNavBar>
       <h1>about base page</h1>
       <button onClick={this.changeComponent}>change</button>
-      <KeepAliveProvider></KeepAliveProvider>
+      {/* <KeepAliveProvider></KeepAliveProvider>
 
       {
         this.state.flag
           ? <KeepAlive key="pp"><ComA></ComA></KeepAlive>
           : <KeepAlive key="qq"><ComB></ComB></KeepAlive>
-      }
-
+      } */}
+      <Waterfall></Waterfall>
     </div>
   }
 }

@@ -53,6 +53,7 @@
     "webpack-merge": "^5.1.2"
   },
   "dependencies": {
+    "adaptive.js": "0.0.2",
     "animate.css": "^4.1.0",
     "antd": "^4.6.2",
     "antd-mobile": "^2.3.3",
